@@ -1,0 +1,12 @@
+import { AnotacioService } from './anotacio/anotacio.service';
+export { NotificacionsService } from './notificacions/notificacions.service';
+export { LoginGuardGuard } from './guards/login-guard.guard';
+export { SubirArchivoService } from './subir-archivo/subir-archivo.service';
+export { UsuarioService } from './usuario/usuario.service';
+export { PersonaService } from './persona/persona.service';
+export { InformeService } from './informe/informe.service';
+export { SettingsService } from './settings/settings.service';
+export { SharedService } from './shared/shared.service';
+export { SidebarService } from './shared/sidebar.service';
+export { PeticioService } from './peticio/peticio.service';
+export { AnotacioService } from './anotacio/anotacio.service';

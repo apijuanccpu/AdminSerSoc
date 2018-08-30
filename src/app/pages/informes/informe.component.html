@@ -1,0 +1,114 @@
+<div class="row animated fadeIn">
+
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Informe: {{ informe.nombre }}</h3>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarInforme(f)">
+                        <div class="form-group">
+                            <label>Nom de l'informe</label>
+                            <input [(ngModel)]="informe.nombre" name="nombre" type="text" class="form-control" placeholder="Nom del informe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data">Data</label>
+
+                            <input [(ngModel)]="informe.data" class="form-control" type="date" name="data" id="data" required>
+
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Data</label>
+                            <input [(ngModel)]="informe.data" name="data" type="text" class="form-control" placeholder="Data del informe" required>
+                        </div> -->
+                        <div class="form-group">
+                            <label>Vigència</label>
+                            <input [(ngModel)]="informe.vigencia" name="vigencia" type="date" class="form-control" placeholder="Vigència del informe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Vigent</label>
+                            <select [(ngModel)]="informe.vigent" name="vigent" class="form-control" required>
+                            <option value="">Seleccione opció</option>
+                            <option value="true"> Si</option>
+                            <option value="false"> No</option>
+                          </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Document</label>
+                            <input [(ngModel)]="informe.doc_informe" name="doc_informe" type="text" class="form-control" placeholder="Document....">
+                            <!-- <input (change)="seleccionFile($event.target.files[0])" name="doc_informe" placeholder="NOM del informe" type="file" class="form-control" id="exampleInputFile" aria-describedby="fileHelp"> -->
+                            <input (change)="openDocument($event.target.files[0])" name="doc_informe" placeholder="NOM del informe" type="file" class="form-control" id="exampleInputFile" aria-describedby="fileHelp">
+                            <input type="input" name="urlBox" [(ngModel)]="urlBox" (keyup.enter)="openDocumentUrl(urlBox)" placeholder="Type a URL...">
+                            <div class="subMenuItem" (click)="openDocumentUrl(urlBox)">Open</div>
+                            <a [href]="informe.doc_informe | docinforme " class="btn btn-inverse waves-effect waves-light">Veure informe</a>
+                            <a (click)="openDocumentUrl(urlBox)" class="btn btn-inverse waves-effect waves-light">Obrir URL</a>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Document</label>
+                            <input *ngIf="!esnou" [(ngModel)]="informe.doc_informe" name="doc_informe" type="text" class="form-control" placeholder="Nombre del informe" required>
+                            <a [routerLink]="informe.doc_informe" class="btn btn-inverse waves-effect waves-light">Veure informe</a>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label>Persona</label>
+                            <select (change)="cambioPersona( $event.target.value )" [(ngModel)]="informe.persona" name="persona" class="form-control" required>
+                            <option value="">Seleccione Persona</option>
+                            <option *ngFor="let persona of persones" [value]="persona._id">
+                              {{ persona.nombre }}
+                            </option>
+                          </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Usuari</label>
+                            <select (change)="cambioUsuario( $event.target.value )" [(ngModel)]="informe.usuario" name="usuario" class="form-control" required>
+                            <option value="">Seleccione Usuari</option>
+                            <option *ngFor="let usuari of usuarios" [value]="usuari._id">
+                              {{ usuari.nombre }}
+                            </option>
+                          </select>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Guardar
+                      </button>
+                        <a routerLink="/informes" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Informe: {{ informe.nombre }}</h3>
+            <section id="viewer">
+                <!-- Simple PDF Viewer: open the test.pdf at the second page -->
+                <simple-pdf-viewer #pdfViewer [src]="src" (onError)="onError($event)" (onProgress)="onProgress($event)" (onLoadComplete)="onLoadComplete()">
+                </simple-pdf-viewer>
+                <div *ngIf="!pdfViewer.isDocumentLoaded()" class="infoBox">
+                    <div class="fa fa-circle-o-notch fa-spin" *ngIf="!errorMsg"></div>
+                    <div class="errorMsg" *ngIf="errorMsg">{{errorMsg}}</div>
+                </div>
+            </section>
+            <!-- Example actions -->
+            <button (click)="pdfViewer.zoomIn()">Zoom In</button>
+            <button (click)="pdfViewer.nextPage()">Next Page</button>
+            <button (click)="pdfViewer.turnLeft()">Turn the document left</button>
+            <button (click)="pdfViewer.search('PDF')">Search the world 'PDF'</button>
+
+            <!-- Information -->
+            <p>Number of pages: {{ pdfViewer.getNumberOfPages() }}</p>
+            <p>Actual page: {{ pdfViewer.getCurrentPage() }}</p>
+            <p>Zoom: {{ pdfViewer.getZoomPercent() }} %</p>
+            <p>Meta:
+                <ul *ngFor="let info of pdfViewer.getDocumentInformation()">
+                    <li>{{info.key}}: {{info.value}}</li>
+                </ul>
+        </div>
+    </div>
+
+</div>

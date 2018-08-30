@@ -1,0 +1,183 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <!-- <input #input (keyup)="buscarPersona( input.value )" type="text" class="form-control" placeholder="Buscar usuario..."> -->
+                <div class="input-group">
+
+                    <input #input type="text" class="form-control" placeholder="Buscar usuario..." id="single-input" value="" placeholder="Dnis...."><span class="input-group-btn">
+                <button (click)="buscarInformesPerPersona(input.value)" class="btn btn-primary" id="consulta-dnis" class="btn waves-effect waves-light btn-success">Consulta ...
+                    
+                  </button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Peticions carregades</label>
+                    <select #select [ngClass]="peticioSeleccionada" class="custom-select col-12" id="inlineFormCustomSelect">
+                        <option selected="">Escull una peticio...</option>
+                        <option *ngFor="let peticio of peticions" [value]="peticio._id">{{ peticio._id }} - {{peticio.num_registre }} - {{ peticio.empresa_energetica }}</option>
+                    </select>
+                    <button (click)="carregarDnisPeticio(select.value)" class="btn btn-primary" id="consulta-dnis2" class="btn waves-effect waves-light btn-success">Selecciona peticio ...
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Consulta per Persones ( <small>{{ totalRegistros }}</small> )</h3>
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>dni</th>
+                            <th>Nom</th>
+                            <th>Poblacio</th>
+                            <th>Actiu</th>
+                            <th>Comunitat</th>
+                            <th>Data Informe</th>
+                            <th>Acció</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let informe of informes">
+                            <!-- <td class="w70">
+                              <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                          </td> -->
+                            <td>
+                                {{ informe.persona.dni }}
+                            </td>
+                            <td>{{ informe.persona.nombre }}</td>
+                            <td> {{ informe.persona.poblacio }} </td>
+                            <td> {{ informe.persona.actiu }} </td>
+                            <td> {{ informe.persona.comunitat }} </td>
+                            <td> {{ informe.data }} </td>
+                            <td>
+                                <button type="button" class="btn btn-success"><i class="fa fa-link"></i> </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Usuaris sense informe ( <small>{{ totalRegistros }}</small> )</h3>
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>dni</th>
+                            <th>Nom</th>
+                            <th>Poblacio</th>
+                            <th>Actiu</th>
+                            <th>Comunitat</th>
+                            <th>Acció</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let perssense of personessenseinforme">
+                            <!-- <td class="w70">
+                              <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                          </td> -->
+                            <td>
+                                {{ perssense.dni }}
+                            </td>
+                            <td>{{ perssense.nombre }}</td>
+                            <td> {{ perssense.poblacio }} </td>
+                            <td> {{ perssense.actiu }} </td>
+                            <td> {{ perssense.comunitat }} </td>
+                            <td>
+                                <button [routerLink]="['/informe','nuevo', perssense._id]" type="button" class="btn btn-success"><i class="fa fa-plus-square"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+                <!-- <button class="btn btn-secondary">
+              Anteriores
+            </button>
+
+                <button class="btn btn-secondary">
+                Siguientes
+            </button> -->
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Dni's inexistents a la base de dades ( <small>{{ totalRegistros }}</small> )</h3>
+
+
+                <table class="table table-hover" *ngIf="!cargando">
+                    <thead>
+                        <tr>
+                            <th>dni</th>
+
+                            <th>Acció</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let dni of dnisnobasededades">
+                            <!-- <td class="w70">
+                              <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                          </td> -->
+                            <td>
+                                {{ dni }}
+                            </td>
+                            <td>
+                                <button [routerLink]="['/persona','nuevo', dni]" type="button" class="btn btn-success"><i class="fa fa-plus-square"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

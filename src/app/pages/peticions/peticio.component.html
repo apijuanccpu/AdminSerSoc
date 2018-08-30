@@ -1,0 +1,146 @@
+<div class="row animated fadeIn">
+
+    <div class="col-md-12">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Peticio: {{ peticio._id }}</h3>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarPeticio(f)">
+
+                        <div class="form-group ">
+                            <label>Data:</label>
+                            <input [(ngModel)]="peticio.data" name="data" type="date" class="form-control" placeholder="Data de registre SIR" required>
+                        </div>
+                        <div class="form-group ">
+                            <label>Data Registre local:</label>
+                            <input [(ngModel)]="peticio.dataincorporacio" name="dataincorporacio" type="date" class="form-control" placeholder="Data del registre Annexa" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Num Registre</label>
+                            <input [(ngModel)]="peticio.num_registre" name="num_registre" type="text" class="form-control" placeholder="Núm de registre" required>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Empresa Energètica</label>
+                            <input [(ngModel)]="peticio.empresa_energetica" name="empresa_energetica" type="text" class="form-control" placeholder="Poblacio del médico" required>
+                        </div> -->
+                        <div class="form-group">
+                            <label>Empresa subministradora:</label>
+                            <select [(ngModel)]="peticio.empresa_energetica" name="empresa_energetica" class="form-control" required>
+                                <option value="">Seleccione opció</option>
+                                <option value="Endesa"> Endesa</option>
+                                <option value="Naturgy"> Naturgy</option>
+                                <option value="Fecsa"> Fecsa</option>
+                              </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Finalitzada</label>
+                            <select [(ngModel)]="peticio.finalitzada" name="finalitzada" class="form-control" required>
+                            <option value="">Seleccione opció</option>
+                            <option value="true"> Si</option>
+                            <option value="false"> No</option>
+                          </select>
+
+                        </div>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Guardar
+                      </button>
+                        <a routerLink="/peticions" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Incorporació de dni's</h3>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="input-group">
+                        <input #input class="form-control" id="single-input" value="" placeholder="Dnis...."> <span class="input-group-btn">
+                                <button type="button" (click)="incorporaTerminos(input.value)" id="check-minutes" class="btn waves-effect waves-light btn-success">Incorporar Dnis</button>
+                            </span>
+                    </div>
+                    <!-- <input #input (keyup)="buscarPersona( input.value )" type="text" class="form-control" placeholder="Buscar usuario..."> -->
+                    <!-- <input #input type="text" class="form-control" placeholder="Buscar usuario...">
+                    <button (click)="incorporaDnis(input.value)" class="btn btn-primary">
+                            <i class="fa fa-save"></i>
+                    </button> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row animated fadeIn" *ngIf="cargando">
+
+        <div class="col-sm-12">
+
+            <div class="alert alert-warning text-center">
+                <strong>Cargando</strong>
+                <br>
+                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                <br>
+                <span>Espere por favor</span>
+            </div>
+            <table *ngIf="nuevo === false" class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Dni</th>
+                        <th>Estat</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let dni of llistadnis; let indice = index">
+                        <!-- <td class="w70">
+                              <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                          </td> -->
+                        <td>
+                            {{ dni.dni }}
+                        </td>
+                        <td>
+                            <button (click)="finalitzaDniPeticio(dni._id)" *ngIf="!dni.acabat" type="button" id="button_{{indice}}" class="btn btn-danger"> Finalitza </button>
+                            <button *ngIf="dni.acabat" type="button" class="btn btn-success btn-rounded"><i class="fa fa-check"></i> Finalitzat</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <table *ngIf="nuevo === true" class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>dni</th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let termino of terminos">
+                        <!-- <td class="w70">
+                              <img (click)="mostrarModal( persona.dni )" [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+                          </td> -->
+                        <td>
+                            {{ termino }}
+                        </td>
+                        <td>
+                            <button class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                 </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

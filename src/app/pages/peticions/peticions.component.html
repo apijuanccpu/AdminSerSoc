@@ -1,0 +1,77 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #input (keyup)="buscarPeticio( input.value )" type="text" class="form-control" placeholder="Buscar petició...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button [routerLink]="['/peticio','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"></i> 
+                        Crear Petició
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Peticions registrades ( <small> {{ _peticioService.totalPeticions }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Num Registre</th>
+                            <th>Empresa</th>
+                            <th>Finalitzada</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let peticio of peticions">
+
+                            <td>
+                                {{ peticio.data | data }}
+                            </td>
+                            <td>
+                                {{ peticio.num_registre}}
+                            </td>
+                            <td>
+                                {{ peticio.empresa_energetica }}
+                            </td>
+                            <td>
+                                {{ peticio.finalitzada }}
+                            </td>
+                            <td>
+                                <button [routerLink]="['/peticio', peticio._id ]" class="btn btn-primary">
+                              <i class="fa fa-edit"></i>
+                            </button>
+
+                                <button (click)="borrarPeticio( peticio )" class="btn btn-danger">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

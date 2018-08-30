@@ -1,0 +1,70 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <!-- <input #input (keyup)="buscarInforme( input.value )" type="text" class="form-control" placeholder="Buscar informe..."> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <input [(ngModel)]="datalimit" class="form-control" type="date" [value]="datalimit" id="example-date-input">
+                    <button (click)="cargarInformesData()" type="button" class="btn btn-block btn-outline-primary">Primary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Informes registrats ( <small> {{ _informeService.totalInformes }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Informe</th>
+                            <th>Data</th>
+                            <th>Vigencia</th>
+                            <th>Persona</th>
+                            <th>Usuari</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let informe of informes">
+
+                            <td>
+                                {{ informe.nombre }}
+                            </td>
+                            <td>
+                                {{ informe.data | data}}
+                            </td>
+                            <td>
+                                {{ informe.vigencia | data }}
+                            </td>
+                            <td>
+                                {{ informe.persona }}
+                            </td>
+                            <td>
+                                {{ informe.usuario }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
