@@ -38,7 +38,7 @@ export class InformeComponent implements OnInit {
   docurl: string;
 
   informe: Informe = new Informe('', '', '');
-  persona: Persona = new Persona('', '', '', '', '');
+  persona: Persona = new Persona('', '', '', 0, '', '', '');
   usuario: Usuario = new Usuario('', '', '');
   contador = 0;
   // pdfSrc = '/pdf-test.pdf';

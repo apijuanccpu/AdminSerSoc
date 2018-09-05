@@ -13,6 +13,7 @@ import { Anotacio } from '../../models/anotacio.model';
 import swal from 'sweetalert2';
 import * as moment from 'moment';
 import { UsuarioService } from '../../services/usuario/usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-persona',
@@ -24,7 +25,9 @@ export class PersonaComponent implements OnInit {
 
   anotacions: Anotacio[] = [];
   informes: Informe[] = [];
-  persona: Persona = new Persona('', '', '', '', '', '');
+  usuarios: Usuario[] = [];
+  persona: Persona = new Persona('', '', '', 0,  '', '', '');
+  usuario: Usuario = new Usuario('', '', '');
   anotacio: Anotacio;
 
   constructor(
@@ -57,6 +60,14 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
 
+    this._usuarioService.cargarUsuarios()
+    .subscribe( usuarios => this.usuarios = usuarios);
+  }
+
+  cambioUsuario( id: string ) {
+
+    this._usuarioService.cargarUsuario( id )
+          .subscribe( usuario => this.usuario = usuario );
 
   }
   cargarPersona( dni: string) {

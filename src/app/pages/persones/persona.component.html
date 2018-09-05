@@ -11,14 +11,21 @@
                             <input [(ngModel)]="persona.dni" name="dni" type="text" class="form-control" placeholder="Dni de lusuari" required>
                         </div>
                         <div class="form-group">
-                            <label>Nomb:</label>
+                            <label>Cognoms - Nom :</label>
                             <input [(ngModel)]="persona.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de lusuari" required>
                         </div>
                         <div class="form-group">
                             <label>Poblacio</label>
                             <input [(ngModel)]="persona.poblacio" name="poblacio" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
                         </div>
-
+                        <div class="form-group">
+                            <label>Domicili</label>
+                            <input [(ngModel)]="persona.domicili" name="domicili" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Codi Postal</label>
+                            <input [(ngModel)]="persona.codipostal" name="codipostal" type="text" class="form-control" placeholder="Poblacio de lusuari" required>
+                        </div>
                         <div class="form-group">
                             <label>Actiu</label>
                             <select [(ngModel)]="persona.actiu" name="actiu" class="form-control" required>
@@ -35,6 +42,16 @@
                           <option value="Si"> Si</option>
                           <option value="No"> No</option>
                         </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Professional</label>
+                            <select (change)="cambioUsuario( $event.target.value )" [(ngModel)]="persona.professional" name="professional" class="form-control" required>
+                            <option value="">Seleccione Usuari</option>
+                            <option *ngFor="let usuari of usuarios" [value]="usuari._id">
+                              {{ usuari.nombre }}
+                            </option>
+                          </select>
 
                         </div>
 
