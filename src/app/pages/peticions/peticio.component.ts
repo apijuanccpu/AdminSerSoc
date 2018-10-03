@@ -13,6 +13,8 @@ import { Peticio } from '../../models/peticio.model';
 import { PeticioService } from '../../services/peticio/peticio.service';
 import { DnipeticioService } from '../../services/dnipeticio/dnipeticio.service';
 import { DniPeticio } from '../../models/dnipeticio.model';
+import { Empresa } from '../../models/empresa.model';
+import { EmpresaService } from '../../services/service.index';
 
 
 @Component({
@@ -24,12 +26,13 @@ export class PeticioComponent implements OnInit {
   llistadnis: DniPeticio[] = [];
   terminos: string[] = [];
   persones: Persona[] = [];
+  empreses: Empresa[] = [];
   totalRegistros = 0;
   cargando = true;
   guardada = false;
   nuevo = true;
 
-  peticio: Peticio = new Peticio('', '', '', false, '', '');
+  peticio: Peticio = new Peticio('', '', '');
   constructor(
     public _personaService: PersonaService,
     public router: Router,
@@ -37,6 +40,7 @@ export class PeticioComponent implements OnInit {
     public _modalUploadService: ModalUploadService,
     public _usuarioService: UsuarioService,
     public _peticioService: PeticioService,
+    public _empresaService: EmpresaService,
     public _dniPeticioService: DnipeticioService
   ) {
 
@@ -55,6 +59,7 @@ export class PeticioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.carregarEmpreses();
   }
 
   carregarPeticio( id: string) {
@@ -76,6 +81,11 @@ export class PeticioComponent implements OnInit {
           console.log(dnis);
         });
     }
+
+  carregarEmpreses() {
+    this._empresaService.cargarEmpreses()
+      .subscribe( empreses => this.empreses = empreses);
+  }
 
   guardarPeticio( f: NgForm ) {
      if (f.invalid) {

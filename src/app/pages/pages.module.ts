@@ -29,6 +29,10 @@ import { LocalitzadorComponent } from './localitzador/localitzador.component';
 import { GestioInformesComponent } from './gestio-informes/gestio-informes.component';
 import { PeticionsComponent } from './peticions/peticions.component';
 import { PeticioComponent } from './peticions/peticio.component';
+import { CartescitacioComponent } from './cartescitacio/cartescitacio.component';
+import { EmpresesComponent } from './empreses/empreses.component';
+import { CartacitacioComponent } from './cartescitacio/cartacitacio.component';
+import { EmpresaComponent } from './empreses/empresa.component';
 // import { InformeComponent } from './informes/informe.component';
 
 
@@ -50,7 +54,11 @@ import { PeticioComponent } from './peticions/peticio.component';
         NotificacionsComponent,
         GestioInformesComponent,
         PeticionsComponent,
-        PeticioComponent
+        PeticioComponent,
+        CartescitacioComponent,
+        EmpresesComponent,
+        CartacitacioComponent,
+        EmpresaComponent
     ],
     exports: [
         DashboardComponent

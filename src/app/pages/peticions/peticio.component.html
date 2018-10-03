@@ -27,9 +27,9 @@
                             <label>Empresa subministradora:</label>
                             <select [(ngModel)]="peticio.empresa_energetica" name="empresa_energetica" class="form-control" required>
                                 <option value="">Seleccione opció</option>
-                                <option value="Endesa"> Endesa</option>
-                                <option value="Naturgy"> Naturgy</option>
-                                <option value="Fecsa"> Fecsa</option>
+                                <option *ngFor="let empresa of empreses" [value]="empresa._id">
+                                    {{ empresa.nom }}
+                                  </option>
                               </select>
                         </div>
                         <div class="form-group">

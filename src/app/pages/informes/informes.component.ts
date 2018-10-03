@@ -11,6 +11,7 @@ export class InformesComponent implements OnInit {
   cargando = true;
   totalRegistros = 0;
   informes: Informe[] = [];
+
   constructor(
     public _informeService: InformeService
   ) { }

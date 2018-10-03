@@ -18,6 +18,10 @@ import { NotificacionsComponent } from './notificacions/notificacions.component'
 import { GestioInformesComponent } from './gestio-informes/gestio-informes.component';
 import { PeticionsComponent } from './peticions/peticions.component';
 import { PeticioComponent } from './peticions/peticio.component';
+import { CartescitacioComponent } from './cartescitacio/cartescitacio.component';
+import { EmpresesComponent } from './empreses/empreses.component';
+import { CartacitacioComponent } from './cartescitacio/cartacitacio.component';
+import { EmpresaComponent } from './empreses/empresa.component';
 
 
 
@@ -41,7 +45,11 @@ const pagesRoutes: Routes = [
             // { path: 'informe/persona/:id', component: InformeComponent, data: { titulo: 'Actualització dInforme' } },
             { path: 'localitzador', component: LocalitzadorComponent, data: { titulo: 'Consulta dUsuaris' } },
             { path: 'notificacions', component: NotificacionsComponent, data: { titulo: 'Notificacions' } },
+            { path: 'cartescitacio', component: CartescitacioComponent, data: { titulo: 'Cartes de Citació' } },
             { path: 'gestioinformes', component: GestioInformesComponent, data: { titulo: 'Gestions Informes' } },
+            { path: 'empreses', component: EmpresesComponent, data: { titulo: 'Empreses' } },
+            { path: 'cartacitacio/:id?/:idpers?', component: CartacitacioComponent, data: { titulo: 'Actualització de Carta' } },
+            { path: 'empresa/:id', component: EmpresaComponent, data: { titulo: 'Actualització dEmpresa' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ];
 

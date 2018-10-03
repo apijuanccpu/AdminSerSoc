@@ -19,7 +19,9 @@ export class SidebarService {
       submenu: [
         { titulo: 'Treballadors / Professionals', url: '/usuarios' },
         { titulo: 'Usuaris', url: '/persones' },
-        { titulo: 'Informes', url: '/informes' }
+        { titulo: 'Informes', url: '/informes' },
+        { titulo: 'Cartes', url: '/cartescitacio' },
+        { titulo: 'Empreses', url: '/empreses' }
       ]
     },
     {

@@ -1,4 +1,3 @@
-import { AnotacioService } from './anotacio/anotacio.service';
 export { NotificacionsService } from './notificacions/notificacions.service';
 export { LoginGuardGuard } from './guards/login-guard.guard';
 export { SubirArchivoService } from './subir-archivo/subir-archivo.service';
@@ -10,3 +9,5 @@ export { SharedService } from './shared/shared.service';
 export { SidebarService } from './shared/sidebar.service';
 export { PeticioService } from './peticio/peticio.service';
 export { AnotacioService } from './anotacio/anotacio.service';
+export { EmpresaService } from './empresa/empresa.service';
+export { CartacitacioService } from './cartacitacio/cartacitacio.service';

@@ -15,7 +15,9 @@ import {
   PeticioService,
   LoginGuardGuard,
   SubirArchivoService,
-  NotificacionsService
+  NotificacionsService,
+  CartacitacioService,
+  EmpresaService
  } from './service.index';
 
 @NgModule({
@@ -35,7 +37,9 @@ import {
     LoginGuardGuard,
     SubirArchivoService,
     ModalUploadService,
-    NotificacionsService
+    NotificacionsService,
+    CartacitacioService,
+    EmpresaService
   ],
   declarations: []
 })

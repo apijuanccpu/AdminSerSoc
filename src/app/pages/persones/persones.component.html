@@ -57,9 +57,9 @@
                             <th>Nom</th>
                             <th>Poblacio</th>
                             <th>Actiu</th>
-                            <th>Comunitat</th>
-                            <th>Edita</th>
-                            <th>Informe</th>
+                            <th>Com</th>
+                            <th></th>
+                            <th>Inf</th>
                         </tr>
                     </thead>
 
@@ -77,14 +77,20 @@
                                 <button [routerLink]="['/persona', persona._id, 'null' ]" class="btn btn-primary">
                                     <i class="fa fa-edit"></i>
                                 </button>
-
+                            </td>
+                            <td>
                                 <button (click)="borrarPersona( persona )" class="btn btn-danger">
                                 <i class="fa fa-trash-o"></i>
                               </button>
                             </td>
                             <td>
                                 <button [routerLink]="['/informe','nuevo',persona._id]" class="btn btn-primary">
-                                    <i class="fa fa-file-archive-o"></i>
+                                    <i class="fa fa-book"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button [routerLink]="['/cartacitacio','nuevo',persona._id]" class="btn btn-primary">
+                                    <i class="fa fa-file-text"></i>
                                 </button>
                             </td>
                         </tr>

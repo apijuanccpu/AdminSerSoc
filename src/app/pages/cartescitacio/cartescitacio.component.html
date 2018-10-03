@@ -1,0 +1,78 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+
+              <input #input (keyup)="buscarCarta( input.value )" type="text" class="form-control" placeholder="Buscar informe...">
+
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <div class="text-right">
+                  <button [routerLink]="['/cartacitacio','nuevo','null']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                      <i class="fa fa-plus"></i> 
+                      Crear Carta de Citació
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="!cargando">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+
+              <h3 class="card-title">Cartes Registrades ( <small> 
+                Total Cartes </small> )</h3>
+
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Data Carta</th>
+                          <th>Usuari</th>
+                          <th>Professional</th>
+                          <th>Usuari</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let carta of cartes">
+
+                          <td>
+                              {{ carta.data_creacio | data  }}
+                          </td>
+                          <td>
+                              {{ carta.usuari.nombre }}
+                          </td>
+                          <td>
+                              {{ carta.professional.nombre }}
+                          </td>
+                          <td>
+                              {{ carta.empresasubministradora.nom }}
+                          </td>
+                          <td>
+                              <button [routerLink]="['/cartacitacio', carta._id, 'null' ]" class="btn btn-primary">
+                            <i class="fa fa-edit"></i>
+                          </button>
+
+                              <button (click)="borraCartaCitacio( carta )" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>
+                          </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+      </div>
+  </div>
+</div>
